@@ -1,13 +1,12 @@
-package pcs;
+
 
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class PermutationTest {
+public class CombinationTest {
 	
 	static int N, R;
 	static int[] inputs, numbers;
-	static boolean[] isChecked;
 	
 	public static void main(String[] args) {
 		
@@ -17,15 +16,14 @@ public class PermutationTest {
 		
 		inputs = new int[N];
 		numbers = new int[R];
-		isChecked = new boolean[N];
 		for (int i = 0; i < N; i++) {
 			inputs[i] = sc.nextInt();
 		}
-		permutation(0);
+		combination(0, 0);
 		sc.close();
 	}
 	
-	public static void permutation(int cnt) {
+	public static void combination(int cnt, int start) {
 		
 		// 기본파트
 		if(cnt == R) {
@@ -34,14 +32,10 @@ public class PermutationTest {
 		}
 		
 		// 유도파트
-		for (int i = 0; i < N; i++) {
-			if(isChecked[i]) continue;
-			
+		for (int i = start; i < N; i++) {
 			numbers[cnt] = inputs[i];
-			isChecked[i] = true;
-			permutation(cnt+1);
+			combination(cnt+1, start+1);
 			
-			isChecked[i] = false;
 		}
 		
 	}
